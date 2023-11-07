@@ -1,1 +1,1 @@
-# Proyecto-Inform-tica-3
+# Proyecto-Informatica-3
