@@ -36,7 +36,7 @@ public class ArbolAVL<AnyType> {
 
     private NodoAVL<AnyType> delete(Producto producto, NodoAVL<AnyType> node) throws Exception {
         if (node == null) {
-            throw new Exception("El elemento no esta en el arbol");
+            throw new Exception("El elemento no esta en el inventario");
         }
         if (((String) producto.getNombre()).compareTo((String) node.getElement().getNombre()) < 0) {
             node.setLeft(delete(producto, node.getLeft()));
@@ -75,14 +75,14 @@ public class ArbolAVL<AnyType> {
         if (x.equals(raiz.getElement().getNombre())) return raiz.getElement();
         else if (((String) x).compareTo((String) raiz.getElement().getNombre()) < 0 && raiz.getLeft() != null) return buscar(x, raiz.getLeft());
         else if (((String) x).compareTo((String) raiz.getElement().getNombre()) > 0 && raiz.getRight() != null) return buscar(x, raiz.getRight());
-        else throw new Exception("El elemento no esta en el arbol");
+        else throw new Exception("El elemento no esta en el inventario");
     }
 
     private Producto buscar(AnyType x, NodoAVL<AnyType> node) throws Exception {
         if (x.equals(node.getElement().getNombre())) return node.getElement();
         else if (((String) x).compareTo((String) node.getElement().getNombre()) < 0 && node.getLeft() != null) return buscar(x, node.getLeft());
         else if (((String) x).compareTo((String) node.getElement().getNombre()) > 0 && node.getRight() != null) return buscar(x, node.getRight());
-        else throw new Exception("El elemento no esta en el arbol");
+        else throw new Exception("El elemento no esta en el inventario");
     }
 
 

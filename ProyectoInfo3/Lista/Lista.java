@@ -7,28 +7,10 @@ public class Lista<AnyType> {
     public Nodo<AnyType> root = null;
 
   /**
-   * Agregar el elemento a la pila
+   * Agregar el elemento a la lista
    * 
    * @param element
    */
-  /*public void push(Producto producto) {
-    Nodo<AnyType> newNodo = new Nodo<AnyType>(producto);
-    Nodo<AnyType> temp = new Nodo<AnyType>(null);
-    if(root==null){
-        newNodo.next = root;
-        root = newNodo;
-    }else{
-      temp=root;
-      while ((producto.nombre).compareTo(temp.producto.nombre) < 0 && temp != null) {
-      temp=temp.next;
-    }
-
-    newNodo.next=temp.next;
-    temp.next=newNodo;
-
-    }
-  }*/
-
   public void push(Producto producto) {
     Nodo<AnyType> newNodo = new Nodo<AnyType>(producto);
   
@@ -65,7 +47,7 @@ public Producto buscar(Producto producto){
   }
 
   /**
-   * Borramos y retornamos el ùiltimo valor.
+   * Borramos
    * 
    * @return
    */
@@ -97,7 +79,7 @@ public Producto buscar(Producto producto){
   public void mostrar(){
     Nodo<AnyType> temp = root;
 
-    System.out.println("|*******INVENTARIO*******|");
+    System.out.println("\n|*******INVENTARIO*******|");
     while (temp != null){
       System.out.println();
       System.out.println("Nombre: "+ temp.producto.getNombre());
@@ -106,7 +88,7 @@ public Producto buscar(Producto producto){
       System.out.println("Stock: "+ temp.producto.getStock());
       temp=temp.next;
     }
-    System.out.println("\n**********************");
+    System.out.println("\n**********************\n");
   }
 
   public boolean isEmpty() {
