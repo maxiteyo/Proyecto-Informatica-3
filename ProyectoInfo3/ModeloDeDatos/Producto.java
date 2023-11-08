@@ -2,16 +2,14 @@ package ProyectoInfo3.ModeloDeDatos;
 
 public class Producto {
 
-    public Producto() {
-    }
-
     private String nombre;
     private int stock;
     private int codigo;
     private float precio;
     private boolean esNuevo;
 
-    
+public Producto() {
+    }
 
 public Producto(String nombre, int stock, int codigo, float precio, boolean esNuevo) {
         this.nombre = nombre;
