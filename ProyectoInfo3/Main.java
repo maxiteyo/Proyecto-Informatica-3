@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import ProyectoInfo3.Lista.Lista;
 import ProyectoInfo3.ModeloDeDatos.Producto;
-import ProyectoInfo3.Tests.StackListTest;
+import ProyectoInfo3.Tests.ListaTest;
 import ProyectoInfo3.Arbol.ArbolAVL;
 import ProyectoInfo3.Tests.ArbolTest;
 
@@ -16,7 +16,7 @@ public class Main {
         ArbolAVL arbol= new ArbolAVL();
         ArbolTest arbolTest= new ArbolTest();
         Lista lista= new Lista();
-        StackListTest listaTest= new StackListTest();
+        ListaTest listaTest= new ListaTest();
         //listaTest.agregarLista(lista, new Producto("papa",20,1,300,true));
         //listaTest.agregarLista(lista, new Producto("cebolla",30,2,150,true));
 

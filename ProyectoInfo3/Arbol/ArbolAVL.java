@@ -38,9 +38,9 @@ public class ArbolAVL<AnyType> {
         if (nodo == null) {
             throw new Exception("El elemento no esta en el inventario");
         }
-        if (((String) producto.getNombre()).compareTo((String) nodo.getElement().getNombre()) < 0) {
+        if (((String) producto.getNombre()).compareToIgnoreCase((String) nodo.getElement().getNombre()) < 0) {
             nodo.setIzquierda(borrar(producto, nodo.getIzquierda()));
-        } else if (((String) producto.getNombre()).compareTo((String) nodo.getElement().getNombre()) > 0) {
+        } else if (((String) producto.getNombre()).compareToIgnoreCase((String) nodo.getElement().getNombre()) > 0) {
             nodo.setDerecha(borrar(producto, nodo.getDerecha()));
         } else {
             // One Child or Leaf Node (no children)
@@ -72,16 +72,16 @@ public class ArbolAVL<AnyType> {
     }
 
     public Producto buscar(AnyType x) throws Exception {
-        if (x.equals(raiz.getElement().getNombre())) return raiz.getElement();
-        else if (((String) x).compareTo((String) raiz.getElement().getNombre()) < 0 && raiz.getIzquierda() != null) return buscar(x, raiz.getIzquierda());
-        else if (((String) x).compareTo((String) raiz.getElement().getNombre()) > 0 && raiz.getDerecha() != null) return buscar(x, raiz.getDerecha());
+        if (((String) x).equalsIgnoreCase(raiz.getElement().getNombre())) return raiz.getElement();
+        else if (((String) x).compareToIgnoreCase((String) raiz.getElement().getNombre()) < 0 && raiz.getIzquierda() != null) return buscar(x, raiz.getIzquierda());
+        else if (((String) x).compareToIgnoreCase((String) raiz.getElement().getNombre()) > 0 && raiz.getDerecha() != null) return buscar(x, raiz.getDerecha());
         else throw new Exception("El elemento no esta en el inventario");
     }
 
     private Producto buscar(AnyType x, NodoAVL<AnyType> nodo) throws Exception {
         if (x.equals(nodo.getElement().getNombre())) return nodo.getElement();
-        else if (((String) x).compareTo((String) nodo.getElement().getNombre()) < 0 && nodo.getIzquierda() != null) return buscar(x, nodo.getIzquierda());
-        else if (((String) x).compareTo((String) nodo.getElement().getNombre()) > 0 && nodo.getDerecha() != null) return buscar(x, nodo.getDerecha());
+        else if (((String) x).compareToIgnoreCase((String) nodo.getElement().getNombre()) < 0 && nodo.getIzquierda() != null) return buscar(x, nodo.getIzquierda());
+        else if (((String) x).compareToIgnoreCase((String) nodo.getElement().getNombre()) > 0 && nodo.getDerecha() != null) return buscar(x, nodo.getDerecha());
         else throw new Exception("El elemento no esta en el inventario");
     }
 
