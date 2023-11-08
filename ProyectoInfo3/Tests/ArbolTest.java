@@ -5,43 +5,43 @@ import ProyectoInfo3.ModeloDeDatos.Producto;
 import java.util.Scanner;
 
 public class ArbolTest {
-    
-    public void agregarArbol(ArbolAVL arbol,Producto producto){
-    
+
+  public void agregarArbol(ArbolAVL arbol, Producto producto) {
+
     arbol.agregar(producto);
+  }
+
+  public void borrar(ArbolAVL arbol, String nombre) {
+
+    try {
+      arbol.borrar(arbol.buscar(nombre));
+      System.out.println("El producto se borro con exito");
+    } catch (Exception e) {
+      e.printStackTrace();
+      return;
     }
+  }
 
-    public void borrar(ArbolAVL arbol,String nombre){
+  public void buscar(ArbolAVL arbol) {
 
-      try {
-        arbol.borrar(arbol.buscar(nombre));
-        System.out.println("El producto se borro con exito");
-      } catch (Exception e) {
-          e.printStackTrace();
-          return;
-      }
-    }
-
-    public void buscar(ArbolAVL arbol){
-
-    Scanner consola= new Scanner(System.in);
-    Producto producto= new Producto();
+    Scanner consola = new Scanner(System.in);
+    Producto producto = new Producto();
     String nombre;
 
     System.out.print("Ingrese el nombre del producto a buscar: ");
-    nombre=consola.nextLine();
+    nombre = consola.nextLine();
     try {
-    producto=arbol.buscar(nombre);        
+      producto = arbol.buscar(nombre);
     } catch (Exception e) {
-        e.printStackTrace();
-        return;
+      e.printStackTrace();
+      return;
     }
-    System.out.println("*******Producto*******");//hacer bonito la impresion del producto encontrado
-    System.out.println("Nombre: "+ producto.getNombre());
-    System.out.println("Codigo: "+ producto.getCodigo());
-    System.out.println("Precio: $"+ producto.getPrecio());
-    System.out.println("Stock: "+producto.getStock());
+    System.out.println("*******Producto*******");
+    System.out.println("Nombre: " + producto.getNombre());
+    System.out.println("Codigo: " + producto.getCodigo());
+    System.out.println("Precio: $" + producto.getPrecio());
+    System.out.println("Stock: " + producto.getStock());
     System.out.println("**********************");
-    }
+  }
 
 }

@@ -1,14 +1,15 @@
 package ProyectoInfo3.Arbol;
+
 import ProyectoInfo3.ModeloDeDatos.Producto;
 
 public class NodoAVL<AnyType> {
+    
     private Producto producto;
     private NodoAVL<AnyType> izquierda;
     private NodoAVL<AnyType> derecha;
 
-    //Para avl
+    // Para avl
     private int altura = 0;
-
 
     public NodoAVL() {
     }
@@ -33,7 +34,7 @@ public class NodoAVL<AnyType> {
         this.producto = producto;
     }
 
-    public Producto getElement(){
+    public Producto getElement() {
         return producto;
     }
 

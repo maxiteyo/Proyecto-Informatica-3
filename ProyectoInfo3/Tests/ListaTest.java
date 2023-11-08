@@ -6,20 +6,20 @@ import ProyectoInfo3.Lista.Nodo;
 import java.util.Scanner;
 
 public class ListaTest<AnyType> {
-    
-    public void agregarLista(Lista list,Producto producto){
+
+    public void agregarLista(Lista list, Producto producto) {
         list.empujar(producto);
     }
 
-    public void mostrarInv(Lista lista){
+    public void mostrarInv(Lista lista) {
         lista.mostrar();
     }
 
-    public Producto buscarLista(Lista lista,Producto producto){
+    public Producto buscarLista(Lista lista, Producto producto) {
         return lista.buscar(producto);
     }
 
-    public void borrarLista(Lista lista,String nombre){
+    public void borrarLista(Lista lista, String nombre) {
         lista.borrar(nombre);
     }
 

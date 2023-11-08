@@ -1,4 +1,5 @@
 package ProyectoInfo3.Arbol;
+
 import ProyectoInfo3.ModeloDeDatos.Producto;
 
 public class ArbolAVL<AnyType> {
@@ -23,7 +24,7 @@ public class ArbolAVL<AnyType> {
         } else if (((String) producto.getNombre()).compareTo((String) nodo.getElement().getNombre()) > 0) {
             nodo.setDerecha(agregar(producto, nodo.getDerecha()));
         } else {
-            //nodo.getProducto().setStock(producto.getStock()+nodo.getProducto().getStock());
+            // nodo.getProducto().setStock(producto.getStock()+nodo.getProducto().getStock());
             return nodo;
         }
         actualizarAltura(nodo);
@@ -43,14 +44,14 @@ public class ArbolAVL<AnyType> {
         } else if (((String) producto.getNombre()).compareToIgnoreCase((String) nodo.getElement().getNombre()) > 0) {
             nodo.setDerecha(borrar(producto, nodo.getDerecha()));
         } else {
-            // One Child or Leaf Node (no children)
+            // Un hijo o nodo hoja
             if (nodo.getIzquierda() == null) {
                 return nodo.getDerecha();
             } else if (nodo.getDerecha() == null) {
                 return nodo.getIzquierda();
             }
-            // Two Children
-            nodo.setElement((Producto) getMax(nodo.getIzquierda()));// OJO, PUEDE PRESENTAR FALLAS, NO ESTABA CASTEADO
+            // Dos hijos
+            nodo.setElement((Producto) getMax(nodo.getIzquierda()));
             nodo.setIzquierda(borrar(nodo.getElement(), nodo.getIzquierda()));
         }
         actualizarAltura(nodo);
@@ -72,19 +73,30 @@ public class ArbolAVL<AnyType> {
     }
 
     public Producto buscar(AnyType x) throws Exception {
-        if (((String) x).equalsIgnoreCase(raiz.getElement().getNombre())) return raiz.getElement();
-        else if (((String) x).compareToIgnoreCase((String) raiz.getElement().getNombre()) < 0 && raiz.getIzquierda() != null) return buscar(x, raiz.getIzquierda());
-        else if (((String) x).compareToIgnoreCase((String) raiz.getElement().getNombre()) > 0 && raiz.getDerecha() != null) return buscar(x, raiz.getDerecha());
-        else throw new Exception("El elemento no esta en el inventario");
+        if (((String) x).equalsIgnoreCase(raiz.getElement().getNombre()))
+            return raiz.getElement();
+        else if (((String) x).compareToIgnoreCase((String) raiz.getElement().getNombre()) < 0
+                && raiz.getIzquierda() != null)
+            return buscar(x, raiz.getIzquierda());
+        else if (((String) x).compareToIgnoreCase((String) raiz.getElement().getNombre()) > 0
+                && raiz.getDerecha() != null)
+            return buscar(x, raiz.getDerecha());
+        else
+            throw new Exception("El elemento no esta en el inventario");
     }
 
     private Producto buscar(AnyType x, NodoAVL<AnyType> nodo) throws Exception {
-        if (x.equals(nodo.getElement().getNombre())) return nodo.getElement();
-        else if (((String) x).compareToIgnoreCase((String) nodo.getElement().getNombre()) < 0 && nodo.getIzquierda() != null) return buscar(x, nodo.getIzquierda());
-        else if (((String) x).compareToIgnoreCase((String) nodo.getElement().getNombre()) > 0 && nodo.getDerecha() != null) return buscar(x, nodo.getDerecha());
-        else throw new Exception("El elemento no esta en el inventario");
+        if (x.equals(nodo.getElement().getNombre()))
+            return nodo.getElement();
+        else if (((String) x).compareToIgnoreCase((String) nodo.getElement().getNombre()) < 0
+                && nodo.getIzquierda() != null)
+            return buscar(x, nodo.getIzquierda());
+        else if (((String) x).compareToIgnoreCase((String) nodo.getElement().getNombre()) > 0
+                && nodo.getDerecha() != null)
+            return buscar(x, nodo.getDerecha());
+        else
+            throw new Exception("El elemento no esta en el inventario");
     }
-
 
     /*
      *
@@ -147,8 +159,7 @@ public class ArbolAVL<AnyType> {
     private void actualizarAltura(NodoAVL<AnyType> nodo) {
         int maxAltura = Math.max(
                 altura(nodo.getIzquierda()),
-                altura(nodo.getDerecha())
-        );
+                altura(nodo.getDerecha()));
         nodo.setAltura(maxAltura + 1);
     }
 
@@ -167,7 +178,7 @@ public class ArbolAVL<AnyType> {
      */
 
     public void imprimirOrden() throws Exception {
-        if(isEmpty()){
+        if (isEmpty()) {
             throw new Exception("El arbol esta vacio");
         }
 
@@ -192,10 +203,12 @@ public class ArbolAVL<AnyType> {
         }
     }
 
-    /*public void printLikeTree(PrintStream os) {
-        os.print(traversePreOrder(raiz));
-        System.out.println();
-    }*/
+    /*
+     * public void printLikeTree(PrintStream os) {
+     * os.print(traversePreOrder(raiz));
+     * System.out.println();
+     * }
+     */
 
     public String traversePreOrder(NodoAVL<AnyType> raiz) {
 
@@ -216,7 +229,7 @@ public class ArbolAVL<AnyType> {
     }
 
     public void traverseNodes(StringBuilder sb, String padding, String punto, NodoAVL<AnyType> nodo,
-                              boolean hasRightSibling) {
+            boolean hasRightSibling) {
         if (nodo != null) {
             sb.append("\n");
             sb.append(padding);
@@ -239,24 +252,25 @@ public class ArbolAVL<AnyType> {
         }
     }
 
-    /* Sin usar
-
-      public void makeEmpty() {
-      raiz = null;
-    }
-
-    public AnyType getMax() {
-        if (isEmpty()) {
-            return null;
-        }
-        return getMax(raiz);
-    }
-
-    public AnyType getMin() {
-        if (isEmpty()) {
-            return null;
-        }
-        return getMin(raiz);
-    }
-    */
+    /*
+     * Sin usar
+     * 
+     * public void makeEmpty() {
+     * raiz = null;
+     * }
+     * 
+     * public AnyType getMax() {
+     * if (isEmpty()) {
+     * return null;
+     * }
+     * return getMax(raiz);
+     * }
+     * 
+     * public AnyType getMin() {
+     * if (isEmpty()) {
+     * return null;
+     * }
+     * return getMin(raiz);
+     * }
+     */
 }
