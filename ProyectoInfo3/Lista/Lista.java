@@ -4,28 +4,28 @@ import java.util.Scanner;
 import ProyectoInfo3.ModeloDeDatos.Producto;
 
 public class Lista<AnyType> {
-    public Nodo<AnyType> root = null;
+    public Nodo<AnyType> raiz = null;
 
   /**
    * Agregar el elemento a la lista
    * 
    * @param element
    */
-  public void push(Producto producto) {
+  public void empujar(Producto producto) {
     Nodo<AnyType> newNodo = new Nodo<AnyType>(producto);
   
-    if(producto.isNew()){
-      if (root == null || (producto.getNombre()).compareTo(root.producto.getNombre()) <= 0) {
-        newNodo.next = root;
-        root = newNodo;
+    if(producto.esNuevo()){
+      if (raiz == null || (producto.getNombre()).compareTo(raiz.producto.getNombre()) <= 0) {
+        newNodo.siguiente = raiz;
+        raiz = newNodo;
     } else {
-        Nodo<AnyType> temp = root;
-        while (temp.next != null && (producto.getNombre()).compareTo(temp.next.producto.getNombre()) > 0) {
-            temp = temp.next;
+        Nodo<AnyType> temp = raiz;
+        while (temp.siguiente != null && (producto.getNombre()).compareTo(temp.siguiente.producto.getNombre()) > 0) {
+            temp = temp.siguiente;
         }
 
-        newNodo.next = temp.next;
-        temp.next = newNodo;
+        newNodo.siguiente = temp.siguiente;
+        temp.siguiente = newNodo;
     }
     }
 
@@ -33,13 +33,13 @@ public class Lista<AnyType> {
 
 public Producto buscar(Producto producto){
 
-  Nodo<AnyType> temp = root;
+  Nodo<AnyType> temp = raiz;
 
   while(temp != null){
     if(temp.producto.getNombre().equalsIgnoreCase(producto.getNombre())){
       return temp.producto;
     }
-    temp=temp.next;
+    temp=temp.siguiente;
   }
   return null;
     
@@ -53,15 +53,15 @@ public Producto buscar(Producto producto){
    */
   public void borrar(String nombre) {
     
-    Nodo<AnyType> temp = root;
-    if(root.producto.getNombre().equalsIgnoreCase(nombre)){
-      root=root.next;
+    Nodo<AnyType> temp = raiz;
+    if(raiz.producto.getNombre().equalsIgnoreCase(nombre)){
+      raiz=raiz.siguiente;
     }else{
-      while(temp!= null && temp.next != null) {
-      if(temp.next.producto.getNombre().equalsIgnoreCase(nombre)){
-        temp.next=temp.next.next;
+      while(temp!= null && temp.siguiente != null) {
+      if(temp.siguiente.producto.getNombre().equalsIgnoreCase(nombre)){
+        temp.siguiente=temp.siguiente.siguiente;
       }
-      temp=temp.next;
+      temp=temp.siguiente;
     }
     }
 
@@ -72,12 +72,12 @@ public Producto buscar(Producto producto){
    * 
    * @return
    */
-  public Producto top() {
-    return root.producto;
+  public Producto arriba() {
+    return raiz.producto;
   }
 
   public void mostrar(){
-    Nodo<AnyType> temp = root;
+    Nodo<AnyType> temp = raiz;
 
     System.out.println("\n|*******INVENTARIO*******|");
     while (temp != null){
@@ -86,25 +86,25 @@ public Producto buscar(Producto producto){
       System.out.println("Codigo: "+ temp.producto.getCodigo());
       System.out.println("Precio: $"+ temp.producto.getPrecio());
       System.out.println("Stock: "+ temp.producto.getStock());
-      temp=temp.next;
+      temp=temp.siguiente;
     }
     System.out.println("\n**********************\n");
   }
 
   public boolean isEmpty() {
-    return this.root == null ? true : false;
+    return this.raiz == null ? true : false;
   }
 
   public void makeEmpty() {
-    this.root = null;
+    this.raiz = null;
   }
 
-  public int size() {
+  public int tamanio() {
     int count = 0;
-    Nodo<AnyType> actual = this.root;
+    Nodo<AnyType> actual = this.raiz;
     while (actual != null) {
       count++;
-      actual = actual.next;
+      actual = actual.siguiente;
     }
     return count;
   }

@@ -8,13 +8,13 @@ public class ArbolTest {
     
     public void agregarArbol(ArbolAVL arbol,Producto producto){
     
-    arbol.add(producto);
+    arbol.agregar(producto);
     }
 
     public void borrar(ArbolAVL arbol,String nombre){
 
       try {
-        arbol.delete(arbol.buscar(nombre));
+        arbol.borrar(arbol.buscar(nombre));
       } catch (Exception e) {
           e.printStackTrace();
           return;

@@ -17,8 +17,8 @@ public class Main {
         ArbolTest arbolTest= new ArbolTest();
         Lista lista= new Lista();
         StackListTest listaTest= new StackListTest();
-        listaTest.agregarLista(lista, new Producto("papa",20,1,300,true));
-        listaTest.agregarLista(lista, new Producto("cebolla",30,2,150,true));
+        //listaTest.agregarLista(lista, new Producto("papa",20,1,300,true));
+        //listaTest.agregarLista(lista, new Producto("cebolla",30,2,150,true));
 
 
     do {
@@ -46,9 +46,9 @@ public class Main {
             if(buscado==null){
                 System.out.print("Ingrese precio del producto: ");
                 producto.setPrecio(consola2.nextFloat());
-                producto.setNew(true);
+                producto.setNuevo(true);
             }else{
-                producto.setNew(false);
+                producto.setNuevo(false);
                 buscado.setStock(buscado.getStock()+producto.getStock());//no seria producto.setStock?
                 System.out.println("Producto encontrado, se actualizo el stock.");
             }

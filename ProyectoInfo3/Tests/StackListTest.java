@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class StackListTest<AnyType> {
     
     public void agregarLista(Lista list,Producto producto){
-        list.push(producto);
+        list.empujar(producto);
     }
 
     public void mostrarInv(Lista lista){

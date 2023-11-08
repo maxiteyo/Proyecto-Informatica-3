@@ -10,78 +10,78 @@ public class ArbolAVL<AnyType> {
      *
      */
 
-    public void add(Producto producto) {
-        raiz = add(producto, raiz);
+    public void agregar(Producto producto) {
+        raiz = agregar(producto, raiz);
     }
 
-    private NodoAVL<AnyType> add(Producto producto, NodoAVL<AnyType> node) {
-        if (node == null) {
+    private NodoAVL<AnyType> agregar(Producto producto, NodoAVL<AnyType> nodo) {
+        if (nodo == null) {
             return new NodoAVL<>(producto);
         }
-        if (((String) producto.getNombre()).compareTo((String) node.getElement().getNombre()) < 0) {
-            node.setLeft(add(producto, node.getLeft()));
-        } else if (((String) producto.getNombre()).compareTo((String) node.getElement().getNombre()) > 0) {
-            node.setRight(add(producto, node.getRight()));
+        if (((String) producto.getNombre()).compareTo((String) nodo.getElement().getNombre()) < 0) {
+            nodo.setIzquierda(agregar(producto, nodo.getIzquierda()));
+        } else if (((String) producto.getNombre()).compareTo((String) nodo.getElement().getNombre()) > 0) {
+            nodo.setDerecha(agregar(producto, nodo.getDerecha()));
         } else {
-            //node.getProducto().setStock(producto.getStock()+node.getProducto().getStock());
-            return node;
+            //nodo.getProducto().setStock(producto.getStock()+nodo.getProducto().getStock());
+            return nodo;
         }
-        updateHeight(node);
-        return applyRotation(node);
+        actualizarAltura(nodo);
+        return aplicarRotacion(nodo);
     }
 
-    public void delete(Producto producto) throws Exception {
-        raiz = delete(producto, raiz);
+    public void borrar(Producto producto) throws Exception {
+        raiz = borrar(producto, raiz);
     }
 
-    private NodoAVL<AnyType> delete(Producto producto, NodoAVL<AnyType> node) throws Exception {
-        if (node == null) {
+    private NodoAVL<AnyType> borrar(Producto producto, NodoAVL<AnyType> nodo) throws Exception {
+        if (nodo == null) {
             throw new Exception("El elemento no esta en el inventario");
         }
-        if (((String) producto.getNombre()).compareTo((String) node.getElement().getNombre()) < 0) {
-            node.setLeft(delete(producto, node.getLeft()));
-        } else if (((String) producto.getNombre()).compareTo((String) node.getElement().getNombre()) > 0) {
-            node.setRight(delete(producto, node.getRight()));
+        if (((String) producto.getNombre()).compareTo((String) nodo.getElement().getNombre()) < 0) {
+            nodo.setIzquierda(borrar(producto, nodo.getIzquierda()));
+        } else if (((String) producto.getNombre()).compareTo((String) nodo.getElement().getNombre()) > 0) {
+            nodo.setDerecha(borrar(producto, nodo.getDerecha()));
         } else {
             // One Child or Leaf Node (no children)
-            if (node.getLeft() == null) {
-                return node.getRight();
-            } else if (node.getRight() == null) {
-                return node.getLeft();
+            if (nodo.getIzquierda() == null) {
+                return nodo.getDerecha();
+            } else if (nodo.getDerecha() == null) {
+                return nodo.getIzquierda();
             }
             // Two Children
-            node.setElement((Producto) getMax(node.getLeft()));// OJO, PUEDE PRESENTAR FALLAS, NO ESTABA CASTEADO
-            node.setLeft(delete(node.getElement(), node.getLeft()));
+            nodo.setElement((Producto) getMax(nodo.getIzquierda()));// OJO, PUEDE PRESENTAR FALLAS, NO ESTABA CASTEADO
+            nodo.setIzquierda(borrar(nodo.getElement(), nodo.getIzquierda()));
         }
-        updateHeight(node);
-        return applyRotation(node);
+        actualizarAltura(nodo);
+        return aplicarRotacion(nodo);
     }
 
-    private Producto getMax(NodoAVL<AnyType> node) {
-        if (node.getRight() != null) {
-            return getMax(node.getRight());
+    private Producto getMax(NodoAVL<AnyType> nodo) {
+        if (nodo.getDerecha() != null) {
+            return getMax(nodo.getDerecha());
         }
-        return node.getElement();
+        return nodo.getElement();
     }
 
-    private Producto getMin(NodoAVL<AnyType> node) {
-        if (node.getLeft() != null) {
-            return getMin(node.getLeft());
+    private Producto getMin(NodoAVL<AnyType> nodo) {
+        if (nodo.getIzquierda() != null) {
+            return getMin(nodo.getIzquierda());
         }
-        return node.getElement();
+        return nodo.getElement();
     }
 
     public Producto buscar(AnyType x) throws Exception {
         if (x.equals(raiz.getElement().getNombre())) return raiz.getElement();
-        else if (((String) x).compareTo((String) raiz.getElement().getNombre()) < 0 && raiz.getLeft() != null) return buscar(x, raiz.getLeft());
-        else if (((String) x).compareTo((String) raiz.getElement().getNombre()) > 0 && raiz.getRight() != null) return buscar(x, raiz.getRight());
+        else if (((String) x).compareTo((String) raiz.getElement().getNombre()) < 0 && raiz.getIzquierda() != null) return buscar(x, raiz.getIzquierda());
+        else if (((String) x).compareTo((String) raiz.getElement().getNombre()) > 0 && raiz.getDerecha() != null) return buscar(x, raiz.getDerecha());
         else throw new Exception("El elemento no esta en el inventario");
     }
 
-    private Producto buscar(AnyType x, NodoAVL<AnyType> node) throws Exception {
-        if (x.equals(node.getElement().getNombre())) return node.getElement();
-        else if (((String) x).compareTo((String) node.getElement().getNombre()) < 0 && node.getLeft() != null) return buscar(x, node.getLeft());
-        else if (((String) x).compareTo((String) node.getElement().getNombre()) > 0 && node.getRight() != null) return buscar(x, node.getRight());
+    private Producto buscar(AnyType x, NodoAVL<AnyType> nodo) throws Exception {
+        if (x.equals(nodo.getElement().getNombre())) return nodo.getElement();
+        else if (((String) x).compareTo((String) nodo.getElement().getNombre()) < 0 && nodo.getIzquierda() != null) return buscar(x, nodo.getIzquierda());
+        else if (((String) x).compareTo((String) nodo.getElement().getNombre()) > 0 && nodo.getDerecha() != null) return buscar(x, nodo.getDerecha());
         else throw new Exception("El elemento no esta en el inventario");
     }
 
@@ -101,41 +101,41 @@ public class ArbolAVL<AnyType> {
      *
      */
 
-    private NodoAVL<AnyType> applyRotation(NodoAVL<AnyType> node) {
-        int balance = balance(node);
+    private NodoAVL<AnyType> aplicarRotacion(NodoAVL<AnyType> nodo) {
+        int balance = balance(nodo);
         if (balance > 1) {
-            if (balance(node.getLeft()) < 0) {
-                node.setLeft(rotateLeft(node.getLeft()));
+            if (balance(nodo.getIzquierda()) < 0) {
+                nodo.setIzquierda(rotacionIzquierda(nodo.getIzquierda()));
             }
-            return rotateRight(node);
+            return rotacionDerecha(nodo);
         }
         if (balance < -1) {
-            if (balance(node.getRight()) > 0) {
-                node.setRight(rotateRight(node.getRight()));
+            if (balance(nodo.getDerecha()) > 0) {
+                nodo.setDerecha(rotacionDerecha(nodo.getDerecha()));
             }
-            return rotateLeft(node);
+            return rotacionIzquierda(nodo);
         }
-        return node;
+        return nodo;
     }
 
-    private NodoAVL<AnyType> rotateRight(NodoAVL<AnyType> node) {
-        NodoAVL<AnyType> leftNode = node.getLeft();
-        NodoAVL<AnyType> centerNode = leftNode.getRight();
-        leftNode.setRight(node);
-        node.setLeft(centerNode);
-        updateHeight(node);
-        updateHeight(leftNode);
-        return leftNode;
+    private NodoAVL<AnyType> rotacionDerecha(NodoAVL<AnyType> nodo) {
+        NodoAVL<AnyType> nodoIzquierdo = nodo.getIzquierda();
+        NodoAVL<AnyType> nodoCentral = nodoIzquierdo.getDerecha();
+        nodoIzquierdo.setDerecha(nodo);
+        nodo.setIzquierda(nodoCentral);
+        actualizarAltura(nodo);
+        actualizarAltura(nodoIzquierdo);
+        return nodoIzquierdo;
     }
 
-    private NodoAVL<AnyType> rotateLeft(NodoAVL<AnyType> node) {
-        NodoAVL<AnyType> rightNode = node.getRight();
-        NodoAVL<AnyType> centerNode = rightNode.getLeft();
-        rightNode.setLeft(node);
-        node.setRight(centerNode);
-        updateHeight(node);
-        updateHeight(rightNode);
-        return rightNode;
+    private NodoAVL<AnyType> rotacionIzquierda(NodoAVL<AnyType> nodo) {
+        NodoAVL<AnyType> nodoDerecho = nodo.getDerecha();
+        NodoAVL<AnyType> nodoCentral = nodoDerecho.getIzquierda();
+        nodoDerecho.setIzquierda(nodo);
+        nodo.setDerecha(nodoCentral);
+        actualizarAltura(nodo);
+        actualizarAltura(nodoDerecho);
+        return nodoDerecho;
     }
 
     /*
@@ -144,20 +144,20 @@ public class ArbolAVL<AnyType> {
      *
      */
 
-    private void updateHeight(NodoAVL<AnyType> node) {
-        int maxHeight = Math.max(
-                height(node.getLeft()),
-                height(node.getRight())
+    private void actualizarAltura(NodoAVL<AnyType> nodo) {
+        int maxAltura = Math.max(
+                altura(nodo.getIzquierda()),
+                altura(nodo.getDerecha())
         );
-        node.setHeight(maxHeight + 1);
+        nodo.setAltura(maxAltura + 1);
     }
 
-    private int balance(NodoAVL<AnyType> node) {
-        return node != null ? height(node.getLeft()) - height(node.getRight()) : 0;
+    private int balance(NodoAVL<AnyType> nodo) {
+        return nodo != null ? altura(nodo.getIzquierda()) - altura(nodo.getDerecha()) : 0;
     }
 
-    private int height(NodoAVL<AnyType> node) {
-        return node != null ? node.getHeight() : 0;
+    private int altura(NodoAVL<AnyType> nodo) {
+        return nodo != null ? nodo.getAltura() : 0;
     }
 
     /*
@@ -166,29 +166,29 @@ public class ArbolAVL<AnyType> {
      *
      */
 
-    public void printInOrder() throws Exception {
+    public void imprimirOrden() throws Exception {
         if(isEmpty()){
             throw new Exception("El arbol esta vacio");
         }
 
-        if (raiz.getLeft() != null) {
-            printInOrder(raiz.getLeft());
+        if (raiz.getIzquierda() != null) {
+            imprimirOrden(raiz.getIzquierda());
         }
 
         System.out.print(raiz.getElement() + "\t");
 
-        if (raiz.getRight() != null) {
-            printInOrder(raiz.getRight());
+        if (raiz.getDerecha() != null) {
+            imprimirOrden(raiz.getDerecha());
         }
 
         System.out.println();
     }
 
-    private void printInOrder(NodoAVL<AnyType> node) {
-        if (node != null) {
-            printInOrder(node.getLeft());
-            System.out.print(node.getElement() + "\t");
-            printInOrder(node.getRight());
+    private void imprimirOrden(NodoAVL<AnyType> nodo) {
+        if (nodo != null) {
+            imprimirOrden(nodo.getIzquierda());
+            System.out.print(nodo.getElement() + "\t");
+            imprimirOrden(nodo.getDerecha());
         }
     }
 
@@ -207,21 +207,21 @@ public class ArbolAVL<AnyType> {
         sb.append(raiz.getElement());
 
         String pointerRight = "└──";
-        String pointerLeft = (raiz.getRight() != null) ? "├──" : "└──";
+        String pointerLeft = (raiz.getDerecha() != null) ? "├──" : "└──";
 
-        traverseNodes(sb, "", pointerLeft, raiz.getLeft(), raiz.getRight() != null);
-        traverseNodes(sb, "", pointerRight, raiz.getRight(), false);
+        traverseNodes(sb, "", pointerLeft, raiz.getIzquierda(), raiz.getDerecha() != null);
+        traverseNodes(sb, "", pointerRight, raiz.getDerecha(), false);
 
         return sb.toString();
     }
 
-    public void traverseNodes(StringBuilder sb, String padding, String pointer, NodoAVL<AnyType> node,
+    public void traverseNodes(StringBuilder sb, String padding, String punto, NodoAVL<AnyType> nodo,
                               boolean hasRightSibling) {
-        if (node != null) {
+        if (nodo != null) {
             sb.append("\n");
             sb.append(padding);
-            sb.append(pointer);
-            sb.append(node.getElement());
+            sb.append(punto);
+            sb.append(nodo.getElement());
 
             StringBuilder paddingBuilder = new StringBuilder(padding);
             if (hasRightSibling) {
@@ -232,10 +232,10 @@ public class ArbolAVL<AnyType> {
 
             String paddingForBoth = paddingBuilder.toString();
             String pointerRight = "└──";
-            String pointerLeft = (node.getRight() != null) ? "├──" : "└──";
+            String pointerLeft = (nodo.getDerecha() != null) ? "├──" : "└──";
 
-            traverseNodes(sb, paddingForBoth, pointerLeft, node.getLeft(), node.getRight() != null);
-            traverseNodes(sb, paddingForBoth, pointerRight, node.getRight(), false);
+            traverseNodes(sb, paddingForBoth, pointerLeft, nodo.getIzquierda(), nodo.getDerecha() != null);
+            traverseNodes(sb, paddingForBoth, pointerRight, nodo.getDerecha(), false);
         }
     }
 

@@ -3,11 +3,11 @@ import ProyectoInfo3.ModeloDeDatos.Producto;
 
 public class NodoAVL<AnyType> {
     private Producto producto;
-    private NodoAVL<AnyType> left;
-    private NodoAVL<AnyType> right;
+    private NodoAVL<AnyType> izquierda;
+    private NodoAVL<AnyType> derecha;
 
     //Para avl
-    private int height = 0;
+    private int altura = 0;
 
 
     public NodoAVL() {
@@ -15,8 +15,8 @@ public class NodoAVL<AnyType> {
 
     public NodoAVL(Producto producto) {
         this.producto = producto;
-        this.left = null;
-        this.right = null;
+        this.izquierda = null;
+        this.derecha = null;
     }
 
     /*
@@ -37,27 +37,27 @@ public class NodoAVL<AnyType> {
         return producto;
     }
 
-    public NodoAVL<AnyType> getLeft() {
-        return left;
+    public NodoAVL<AnyType> getIzquierda() {
+        return izquierda;
     }
 
-    public void setLeft(NodoAVL<AnyType> left) {
-        this.left = left;
+    public void setIzquierda(NodoAVL<AnyType> izquierda) {
+        this.izquierda = izquierda;
     }
 
-    public NodoAVL<AnyType> getRight() {
-        return right;
+    public NodoAVL<AnyType> getDerecha() {
+        return derecha;
     }
 
-    public void setRight(NodoAVL<AnyType> right) {
-        this.right = right;
+    public void setDerecha(NodoAVL<AnyType> derecha) {
+        this.derecha = derecha;
     }
 
-    public int getHeight() {
-        return height;
+    public int getAltura() {
+        return altura;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void setAltura(int altura) {
+        this.altura = altura;
     }
 }

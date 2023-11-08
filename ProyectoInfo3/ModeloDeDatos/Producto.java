@@ -9,24 +9,24 @@ public class Producto {
     private int stock;
     private int codigo;
     private float precio;
-    private boolean isNew;
+    private boolean esNuevo;
 
     
 
-public Producto(String nombre, int stock, int codigo, float precio, boolean isNew) {
+public Producto(String nombre, int stock, int codigo, float precio, boolean esNuevo) {
         this.nombre = nombre;
         this.stock = stock;
         this.codigo = codigo;
         this.precio = precio;
-        this.isNew = isNew;
+        this.esNuevo = esNuevo;
     }
 
-public boolean isNew() {
-        return isNew;
+public boolean esNuevo() {
+        return esNuevo;
     }
 
-    public void setNew(boolean isNew) {
-        this.isNew = isNew;
+    public void setNuevo(boolean esNuevo) {
+        this.esNuevo = esNuevo;
     }
 
 
