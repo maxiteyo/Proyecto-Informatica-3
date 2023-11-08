@@ -23,7 +23,7 @@ public class Main {
 
     do {
             
-        System.out.println("************MENU************");
+        System.out.println("\n************MENU************");
         System.out.println("*  1- Agregar producto     *");
         System.out.println("*  2- Borrar producto      *");
         System.out.println("*  3- Buscar producto      *");

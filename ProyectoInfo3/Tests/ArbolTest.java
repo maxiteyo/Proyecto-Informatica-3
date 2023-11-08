@@ -15,6 +15,7 @@ public class ArbolTest {
 
       try {
         arbol.borrar(arbol.buscar(nombre));
+        System.out.println("El producto se borro con exito");
       } catch (Exception e) {
           e.printStackTrace();
           return;
